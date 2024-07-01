@@ -3,7 +3,7 @@ resource "aws_quicksight_user" "example" {
   email         = "author@example.com"
   namespace     = "foo"
   identity_type = "IAM"
-  iam_arn       = "arn:aws:iam::123456789012:user/Example"
+  iam_arn       = "arn:aws:iam::905418071784:user/testuser"
   user_role     = "AUTHOR"
 }
 
