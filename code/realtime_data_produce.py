@@ -2,7 +2,7 @@ import json
 import datetime
 import random
 import boto3
-session=boto3.Session(aws_access_key_id='',aws_secret_access_key='', region_name='us-east-1')
+session=boto3.Session(aws_access_key_id='',aws_secret_access_key='NKA1wi+g8aJ51xvSdSGLhTpRb1fe8niK+6s/d8Kw', region_name='us-east-1')
 
 client = session.client('kinesis')
 
