@@ -6,3 +6,4 @@ resource "aws_quicksight_user" "example" {
   iam_arn       = "arn:aws:iam::123456789012:user/Example"
   user_role     = "AUTHOR"
 }
+
