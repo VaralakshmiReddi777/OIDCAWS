@@ -1,15 +1,13 @@
-data "aws_caller_identity" "current" {}
-
-output "account_id" {
-  value = data.aws_caller_identity.current.account_id
+resource "aws_ssm_parameter" "fsystem01" {
+  name      = "/systems/fsystem01/config"
+  type      = "String"
+  value     = "https://www.website2.com"
+  overwrite = true
 }
 
-output "caller_arn" {
-  value = data.aws_caller_identity.current.arn
+resource "aws_ssm_parameter" "fsystem02" {
+  name            = "/systems/fsystem02/config"
+  type            = "String"
+  value           = "https://www.ESL2.com"
+  overwrite = true
 }
-
-output "caller_user" {
-  value = data.aws_caller_identity.current.user_id
-}
-
-
