@@ -11,3 +11,4 @@ resource "aws_kinesis_stream" "realtime-data-stream" {
     Name = "realtime-data-stream"
   }
 }
+
