@@ -11,3 +11,4 @@ resource "aws_ssm_parameter" "fsystem02" {
   value           = "https://www.ESL3.com"
   overwrite = true
 }
+
