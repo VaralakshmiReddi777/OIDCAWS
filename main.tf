@@ -1,14 +1,41 @@
-resource "aws_ssm_parameter" "fsystem01" {
-  name      = "/systems/fsystem01/config"
-  type      = "String"
-  value     = "https://www.website3.com"
-  overwrite = true
-}
+resource "aws_cloudwatch_dashboard" "main" {
+  dashboard_name = "my-dashboard"
 
-resource "aws_ssm_parameter" "fsystem02" {
-  name            = "/systems/fsystem02/config"
-  type            = "String"
-  value           = "https://www.ESL3.com"
-  overwrite = true
-}
+  dashboard_body = jsonencode({
+    widgets = [
+      {
+        type   = "metric"
+        x      = 0
+        y      = 0
+        width  = 12
+        height = 6
 
+        properties = {
+          metrics = [
+            [
+              "AWS/EC2",
+              "CPUUtilization",
+              "InstanceId",
+              "i-012345"
+            ]
+          ]
+          period = 300
+          stat   = "Average"
+          region = "us-east-1"
+          title  = "EC2 Instance CPU"
+        }
+      },
+      {
+        type   = "text"
+        x      = 0
+        y      = 7
+        width  = 3
+        height = 3
+
+        properties = {
+          markdown = "Hello world"
+        }
+      }
+    ]
+  })
+}
