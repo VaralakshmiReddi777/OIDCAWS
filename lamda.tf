@@ -1,3 +1,15 @@
+data "aws_iam_policy_document" "lambda_execution_policy" {
+  statement {
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+  }
+}
+
+
 # Creates a Lambda function to handle events from Kinesis
 resource "aws_lambda_function" "realtime_data_consume" {
   function_name    = "${var.environment}_handler"
