@@ -24,7 +24,7 @@ resource "aws_lambda_function" "realtime_data_consume" {
 
 # Provides a Lambda event source mapping. This allows Lambda functions to get events from Kinesis
 resource "aws_lambda_event_source_mapping" "realtime-data-mapping" {
-  event_source_arn  = aws_kinesis_stream.realtime-data-stream.arn
+  event_source_arn  = "realtime-data-stream"
   function_name     = aws_lambda_function.realtime_data_consume.arn
   starting_position = "LATEST"
 }
