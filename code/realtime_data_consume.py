@@ -6,7 +6,7 @@ import uuid
 import datetime
 
 # Initialize DynamoDB and Kinesis resources and set up constants
-dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
 table_name = os.environ['DYNAMODB_TABLE']
 
 def lambda_handler(event, context):
