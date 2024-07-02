@@ -1,6 +1,5 @@
-
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 resource "aws_iam_role" "lambda_role" {
 name   = "Spacelift_Test_Lambda_Function_Role"
