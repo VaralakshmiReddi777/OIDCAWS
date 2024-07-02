@@ -18,7 +18,7 @@ resource "aws_lambda_function" "realtime_data_consume" {
   handler          = "realtime_data_consume.lambda_handler"
   runtime          = "python3.9"
   timeout          = 10
-  role             = aws_iam_role.lambda_execution_role.arn
+  role             = "arn:aws:iam::905418071784:role/lambda_execution_role"
 
   # Define the mapping between the Lambda function and the Kinesis stream
   depends_on = [aws_iam_policy_attachment.lambda_execution_policy_attachment]
