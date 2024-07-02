@@ -1,3 +1,21 @@
+data "aws_iam_policy_document" "assume_role" {
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+
+    actions = ["sts:AssumeRole"]
+  }
+}
+
+resource "aws_iam_role" "iam_for_lambda" {
+  name               = "iam_for_lambda"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
+}
+
 # Creates a Lambda function to handle events from Kinesis
 resource "aws_lambda_function" "realtime_data_consume" {
   function_name    = "${var.environment}_handler"
@@ -6,7 +24,7 @@ resource "aws_lambda_function" "realtime_data_consume" {
   handler          = "realtime_data_consume.lambda_handler"
   runtime          = "python3.9"
   timeout          = 10
-  role             = "arn:aws:iam::905418071784:role/lambda_execution_role"
+  role             = aws_iam_role.iam_for_lambda.arn
 
   # Define the mapping between the Lambda function and the Kinesis stream
   depends_on = [aws_iam_policy_attachment.lambda_execution_policy_attachment]
