@@ -64,7 +64,7 @@ resource "aws_iam_policy" "dynamodb_write_policy" {
           "dynamodb:DeleteItem",
         ],
         Effect   = "Allow",
-        Resource = aws_dynamodb_table.realtime_data_table.arn
+       Resource = "*"
       }
     ]
   })
