@@ -11,6 +11,6 @@ resource "aws_cloudwatch_event_rule" "my_lambda_trigger" {
 # Create a CloudWatch Events target to invoke the Lambda function
 resource "aws_cloudwatch_event_target" "my_lambda_target" {
   rule      = aws_cloudwatch_event_rule.my_lambda_trigger.name
-  arn       = aws_lambda_function.my_lambda_function.arn
+  arn       = "arn:aws:lambda:us-east-2:905418071784:function:Spacelift_Test_Lambda_Function"
   target_id = "my-lambda-target"
 }
