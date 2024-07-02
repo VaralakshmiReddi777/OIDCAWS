@@ -13,7 +13,7 @@ resource "aws_lambda_function" "realtime_data_consume" {
 
   environment {
     variables = {
-      DYNAMODB_TABLE = "realtime_data_table"
+      DYNAMODB_TABLE = aws_dynamodb_table.realtime-data-table.name
     }
   }
 
@@ -24,7 +24,7 @@ resource "aws_lambda_function" "realtime_data_consume" {
 
 # Provides a Lambda event source mapping. This allows Lambda functions to get events from Kinesis
 resource "aws_lambda_event_source_mapping" "realtime-data-mapping" {
-  event_source_arn  = "realtime-data-stream"
+  event_source_arn  = aws_kinesis_stream.realtime-data-stream.arn
   function_name     = aws_lambda_function.realtime_data_consume.arn
   starting_position = "LATEST"
 }
