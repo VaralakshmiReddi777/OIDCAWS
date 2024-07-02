@@ -6,7 +6,7 @@ import boto3
 sessioncred = boto3.Session()
 credentials = sessioncred.get_credentials()
 
-session=boto3.Session(aws_access_key_id=credentials.access_key,aws_secret_access_key=credentials.secret_key, region_name='us-east-1')
+session=boto3.Session(aws_access_key_id=credentials.access_key,aws_secret_access_key=credentials.secret_key, region_name='us-east-2')
 
 client = session.client('kinesis')
 
