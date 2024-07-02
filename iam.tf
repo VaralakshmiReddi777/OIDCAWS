@@ -46,7 +46,7 @@ resource "aws_iam_policy" "cloudwatch_logs_policy" {
 resource "aws_iam_policy_attachment" "cloudwatch_logs_attachment" {
   name       = "cloudwatch_logs_attachment"
   roles      = [aws_iam_role.lambda_execution_role.name]
-  policy_arn = aws_iam_policy.cloudwatch_logs_policy.arn
+  policy_arn = data.aws_iam_policy.cloudwatch_logs_policy.arn
 }
 
 # Grant permission to write data to DynamoDB
@@ -64,7 +64,7 @@ resource "aws_iam_policy" "dynamodb_write_policy" {
           "dynamodb:DeleteItem",
         ],
         Effect   = "Allow",
-        Resource = aws_dynamodb_table.realtime-data-table.arn
+        Resource = data.aws_dynamodb_table.realtime-data-table.arn
       }
     ]
   })
