@@ -27,11 +27,11 @@ resource "aws_lambda_function" "realtime_data_consume" {
   role             = aws_iam_role.iam_for_lambda.arn
 
   # Define the mapping between the Lambda function and the Kinesis stream
-  depends_on = [aws_iam_policy_attachment.lambda_execution_policy_attachment]
+  depends_on = [data.aws_iam_policy_attachment.lambda_execution_policy_attachment]
 
   environment {
     variables = {
-      DYNAMODB_TABLE = aws_dynamodb_table.realtime-data-table.name
+      DYNAMODB_TABLE = data.aws_dynamodb_table.realtime-data-table.name
     }
   }
 
