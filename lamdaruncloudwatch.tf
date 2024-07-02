@@ -31,7 +31,7 @@ resource "aws_iam_role" "my_lambda_role" {
 
 # Attach a policy to the Lambda role (e.g., permissions to log to CloudWatch)
 resource "aws_iam_policy_attachment" "my_lambda_policy_attachment" {
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"  # Replace with your desired policy ARN
+  policy_arn = "arn:aws:iam::905418071784:policy/cloudwatch-logs-policy"  # Replace with your desired policy ARN
   roles      = [aws_iam_role.my_lambda_role.name]
 }
 
