@@ -6,7 +6,7 @@ data "archive_file" "lambda" {
 
 resource "aws_lambda_function" "send_alert_email" {
   function_name = "SendAlertEmail"
-  role          = aws_iam_role.shopFloorAlert_lambda_role.arn
+  role          = "arn:aws:iam::905418071784:role/shopFloorAlert_lambda_role"
   runtime       = "nodejs16.x"
   filename      = "sendAlertEmail.zip"
   handler       = "index.handler"
