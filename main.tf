@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-2"
+}
+
 resource "aws_iam_role" "shopFloorAlert_lambda_role" {
   name = "shopFloorAlert_lambda_role"
 
