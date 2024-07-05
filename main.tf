@@ -1,20 +1,17 @@
+data "archive_file" "lambda" {
+  type        = "zip"
+  source_file = "${path.module}/lambda/sendAlertEmail/index.js"
+  output_path = "sendAlertEmail.zip"
+}
 
-resource "aws_dynamodb_table" "shop_floor_alerts" {
-  name             = "shop_floor_alerts"
-  billing_mode     = "PROVISIONED"
-  stream_enabled   = true
-  stream_view_type = "NEW_IMAGE"
-  read_capacity    = 5
-  write_capacity   = 5
-  hash_key         = "PK"
-  range_key        = "SK"
+resource "aws_lambda_function" "send_alert_email" {
+  function_name = "SendAlertEmail"
+  role          = aws_iam_role.shopFloorAlert_lambda_role.arn
+  runtime       = "nodejs16.x"
+  filename      = "sendAlertEmail.zip"
+  handler       = "index.handler"
+  timeout       = "15"
 
-  attribute {
-    name = "PK"
-    type = "S"
-  }
-  attribute {
-    name = "SK"
-    type = "S"
-  }
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+
 }
