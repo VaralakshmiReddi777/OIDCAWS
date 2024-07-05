@@ -18,10 +18,3 @@ resource "aws_dynamodb_table" "shop_floor_alerts" {
     type = "S"
   }
 }
-
-resource "aws_lambda_event_source_mapping" "trigger" {
-  batch_size        = 100
-  event_source_arn  = aws_dynamodb_table.shop_floor_alerts.stream_arn
-  function_name     = aws_lambda_function.send_alert_email.arn
-  starting_position = "LATEST"
-}
